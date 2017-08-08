@@ -75,6 +75,14 @@ Open browser and access `http://localhost:3000`.
 
 ## Deployment
 
-Using Capistrano for development.
+Using Capistrano.
 
     cap stging deploy
+
+## Development
+
+    cd carrier-pigeon
+    bundle install
+    rails db:create
+    cat ./db/carrier-pigeon_development_0113.sql.gz |gunzip|psql -dcarrier-pigeon_development
+    rails s
