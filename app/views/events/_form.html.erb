@@ -1,0 +1,61 @@
+<% content_for :page_header do %>
+  <% if @event.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <h4 class="page-header">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:
+      </h4>
+    </div>
+  <% end %>
+<% end %>
+<%= simple_form_for @event, html: {role: :form} do |f| %>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= f.button :submit, 'Save', class: "btn btn-primary btn-outline btn-lg" %>
+              <%= yield :event_form_cancel_button %>
+            </div>
+            <div class="panel-body">
+              <ul class="nav nav-pills">
+                  <li class="active"><a href="#event_basic" data-toggle="tab">Basic</a>
+                  </li>
+                  <li><a href="#description" data-toggle="tab">Description</a>
+                  </li>
+              </ul>
+              <div class="tab-content">
+
+                    <div class="tab-pane fade in active" id="event_basic">
+                      <div class="row">
+                      <div class="col-lg-4">
+                          <%= f.input :name %>
+                          <%= f.input :event_type, collection: Settings.event.types, label: 'Type', include_blank: false, input_html: {class: 'selectpicker'} %>
+                          <%= f.input :organizer %>
+                          <%= f.input :location %>
+                      </div>
+                      <div class="col-lg-4">
+                          <%= f.input :started_at, as: :datetime_picker, label: 'Start Date' %>
+                          <%= f.input :ended_at, as: :datetime_picker, label: 'End Date' %>
+                          <%= f.input :enrollment_started_at, as: :datetime_picker, label: 'Enrollment Start Date' %>
+                          <%= f.input :enrollment_ended_at, as: :datetime_picker, label: 'Enrollment End Date' %>
+                      </div>
+                      <div class="col-lg-4">
+                          <%= f.association :owner, collection: @departments, as: :grouped_select, group_method: :users, label_method: :display_name, value_method: :id, label: 'Owner', prompt: 'Please select a user...', input_html: {class: 'selectpicker', 'data-live-search': true} %>
+                          <%= f.association :user, collection: @departments, as: :grouped_select, group_method: :users, label_method: :display_name, value_method: :id, label: 'Contacts', prompt: 'Please select a user...', input_html: {class: 'selectpicker', 'data-live-search': true} %>
+                          <%= f.association :departments, include_blank: false, input_html: {size: 10, class: 'selectpicker', 'data-live-search': true, title: 'Please select departments' } %>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="tab-pane fade" id="description">
+                      <div class="row">
+                      <div class="col-lg-12">
+                          <%= f.input :description, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full', height: 600 } } %>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

@@ -1,0 +1,88 @@
+<% content_for :page_header do %>
+  <h4 class="page-header">
+  <% if policy(@event).update? %>
+    <div class="row">
+      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-10">
+        <%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-info btn-lg' %>
+        <%= link_to 'Send test email to me', send_email_event_path(@event), class: "btn btn-info btn-lg" %>
+        <%= link_to 'Back', :back, class: "btn btn-info btn-lg" %>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <%= button_to publish_caption, event_path, method: :patch, class: "btn btn-warning btn-lg", params: {event: {id: @event.id, status: event_status}} %>
+      </div>
+    </div>
+  <% end %>
+  <% if policy(@event).enroll? %>
+    <div class="row">
+      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-10">
+        <%= link_to 'Enroll', enroll_event_user_path(@event, current_user), remote: true, method: :post, class: 'btn btn-info btn-lg' %>
+        <%= content_tag :button, 'Enrollment List', class: 'btn btn-success btn-lg', 'data-toggle': 'modal', 'data-target': '#enrollment_list_modal' %>
+      </div>
+    </div>
+  <% end %>
+  </h4>
+<% end %>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="<%= panel_type %>">
+            <div class="panel-heading">
+              <%=  @event.name %>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                  <span class="pull-left">
+                    <%= image_tag @event.user.gravatar_url(size: 100), class: 'img-circle img-responsive' %>
+                    <div class="header">
+                        <strong class="primary-font pull-left"><%= @event.user.first_name %></strong>
+                        </br>
+                        <p>
+                          <small class="pull-left text-muted">
+                              <i class="fa fa-clock-o fa-fw"></i><%= "#{time_ago_in_words(@event.created_at, include_seconds: true)} ago" %>
+                          </small>
+                        </p>
+                    </div>
+                  </span>
+                  </div>
+                  <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Information
+                        </div>
+                        <div class="panel-body">
+                            <dl class="dl-horizontal">
+                                <dt>Organizer</dt>
+                                <dd><%= @event.organizer %></dd>
+                                <dt>Owner</dt>
+                                <dd><%= @event.owner.display_name %></dd>
+                                <dt>Start Date</dt>
+                                <dd><%= @event.started_at.to_s(:db) %></dd>
+                                <dt>End Date</dt>
+                                <dd><%= @event.ended_at.to_s(:db) %></dd>
+                                <dt>Enrollment Start Date</dt>
+                                <dd><%= @event.enrollment_started_at.to_s(:db) rescue nil %></dd>
+                                <dt>Enrollment end Date</dt>
+                                <dd><%= @event.enrollment_ended_at.to_s(:db) %></dd>
+                                <dt>Status</dt>
+                                <dd><%= @event.status.capitalize %></dd>
+                                <dt>Departments</dt>
+                                <dd><%= @event.departments.pluck(:name).join(", ") %></dd>
+                                <dt>Contacts</dt>
+                                <dd><%= @event.contacts %></dd>
+                                <dt>Location</dt>
+                                <dd><%= @event.location %></dd>
+                            </dl>
+                            <%= render 'enrollment_list_modal' %>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                    <%= raw @event.converted_description %>
+                  </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+  </div>

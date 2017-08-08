@@ -1,7 +1,7 @@
 # Carrier Pigeon
 
-Carrier Pigeon is a system for event management.  
-She brings awesome messages to everyone worked in the office like a carrier pigeon.  
+Carrier Pigeon is a intranet project of the TKGZ Office.  
+She brings awesome messages to everyone worked in the TKGZ office like a carrier pigeon.  
 
 ## Features:
 

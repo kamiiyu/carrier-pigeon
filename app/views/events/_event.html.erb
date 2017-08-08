@@ -1,0 +1,8 @@
+<tr class="<%= cycle(" odd", " even") -%>">
+    <td><%= link_to event.name, event_path(event), class: 'btn btn-outline btn-link' %></td>
+    <td><%= link_to event.event_type || '-', event_path(event), class: 'btn btn-outline btn-link' %></td>
+    <td><%= link_to event.started_at.to_s(:db) || '-', event_path(event), class: 'btn btn-outline btn-link' %></td>
+    <td><%= link_to event.ended_at.to_s(:db) || '-', event_path(event), class: 'btn btn-outline btn-link' %> </td>
+    <td><%= link_to event.created_at.to_s(:db) || '-', event_path(event), class: 'btn btn-outline btn-link' %></td>
+    <td><%= link_to event.status.camelize, event_path(event), class: 'btn btn-outline btn-link' %> </td>
+</tr>

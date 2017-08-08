@@ -1,0 +1,30 @@
+<div class="modal fade" id="enrollment_list_modal" tabindex="-1" role="dialog" aria-labelledby="enrollment_list_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="enrollment_list_modal_label"><%= "#{@event.enrolled_users.count}/#{@event.departments.map{|d| d.users.count}.sum} users have enrolled." %></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-pull-12">
+                        <ul class="list-inline">
+                            <% @event.enrolled_users.each do |user| %>
+                            <% cache user do %>
+                              <li>
+                                  <%= image_tag user.gravatar_url, class: 'img-circle', title: user.first_name %>
+                                  <%= content_tag :strong, user.display_name, class: 'primary-font' %>
+                              </li>
+                              <% end %>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-10 col-sm-10 col-md-10 col-lg-11">
+    <%= select_tag 'event_type', options_for_select(Settings.event.types, params[:event_type]), prompt: 'All event types', class: 'selectpicker', 'data-style' => params[:event_type].present? ? 'btn btn-success btn-lg' : 'btn btn-success btn-lg btn-outline' %>
+    <%= link_to 'Latest', filters_path(filter: {updated_at: :desc}), class: (params[:filter][:updated_at].present? rescue false) ? 'btn btn-primary btn-lg' : 'btn btn-primary btn-lg btn-outline' %>
+    <%= link_to 'Upcoming', filters_path(filter: {started_at: :desc}), class: (params[:filter][:started_at].present? rescue false) ? 'btn btn-primary btn-lg' : 'btn btn-primary btn-lg btn-outline' %>
+  </div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
+    <% if policy(Event.new).create? %>
+      <%= link_to 'Create', new_event_path, class: 'btn btn-info btn-outline btn-lg' %>
+    <% end %>
+  </div>
+</div>
