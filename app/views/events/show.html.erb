@@ -54,7 +54,7 @@
                                 <dt>Organizer</dt>
                                 <dd><%= @event.organizer %></dd>
                                 <dt>Owner</dt>
-                                <dd><%= @event.owner.display_name %></dd>
+                                <dd><%= @event.owner.display_name rescue '-' %></dd>
                                 <dt>Start Date</dt>
                                 <dd><%= @event.started_at.to_s(:db) %></dd>
                                 <dt>End Date</dt>
@@ -62,7 +62,7 @@
                                 <dt>Enrollment Start Date</dt>
                                 <dd><%= @event.enrollment_started_at.to_s(:db) rescue nil %></dd>
                                 <dt>Enrollment end Date</dt>
-                                <dd><%= @event.enrollment_ended_at.to_s(:db) %></dd>
+                                <dd><%= @event.enrollment_ended_at.to_s %></dd>
                                 <dt>Status</dt>
                                 <dd><%= @event.status.capitalize %></dd>
                                 <dt>Departments</dt>
