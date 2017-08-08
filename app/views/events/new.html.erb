@@ -1,4 +1,4 @@
-<% content_for :event_form_cancel_button do %>
-  <%= link_to 'Cancel', events_path, class: "btn btn-danger btn-outline btn-lg", data: {confirm: "Changes will not be saved!"} %>
-<% end %>
-<%= render 'form', event: @event %>
+<%= render 'event_alert'%>
+<div class='container-fluid'>
+    <%= render 'form', event: @event %>
+</div>

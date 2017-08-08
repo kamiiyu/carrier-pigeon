@@ -5,9 +5,6 @@ RSpec.describe EventsController, type: :routing do
 
     it "routes to #index" do
       expect(:get => "/events").to route_to("events#index")
-      expect(:get => "/events/event_type/Training").to route_to("events#index", event_type: 'Training')
-      expect(:get => "/events/event_type/Outing").to route_to("events#index", event_type: 'Outing')
-      expect(:get => "/events/event_type/Others").to route_to("events#index", event_type: 'Others')
     end
 
     it "routes to #new" do
@@ -35,15 +32,7 @@ RSpec.describe EventsController, type: :routing do
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/events/1").not_to be_routable
-    end
-
-    it "routes to #send_email" do
-      expect(:get => "/events/1/send_email").to route_to("events#send_email", :id => "1")
-    end
-
-    it "routes to #enroll_by_email" do
-      expect(:get => "/events/enroll_by_email?token=header.test.fotter").to route_to("events#enroll_by_email", token: 'header.test.fotter')
+      expect(:delete => "/events/1").to route_to("events#destroy", :id => "1")
     end
 
   end

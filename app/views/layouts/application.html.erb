@@ -156,7 +156,7 @@
                     <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
-                    <!--li>
+                    <li>
                         <a href="#">
                             <div>
                                 <i class="fa fa-comment fa-fw"></i> New Comment
@@ -206,19 +206,19 @@
                             <strong>See All Alerts</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
-                    </li-->
+                    </li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%= nav_gavatar rescue nil %> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <!--li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
-                    <li class="divider"></li-->
+                    <li class="divider"></li>
                     <li>
                       <% if current_user %>
                         <%= link_to destroy_user_session_path, method: :delete do %>
@@ -333,32 +333,13 @@
             </div>
         </div-->
     </nav>
-
-      <div class='container-fluid'>
-        <div class="row">
-            <div class="col-lg-12">
-              <!-- TODO  -->
-              <% if flash[:notice] %>
-                  <div class="alert alert-success alert-dismissable">
-                    <h4 class="page-header">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                      <%= flash[:notice] %>
-                    </h4>
-                  </div>
-              <% end %>
-              <% if flash[:alert] %>
-                  <div class="alert alert-danger alert-dismissable">
-                    <h4 class="page-header">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                      <%= flash[:alert] %>
-                    </h4>
-                  </div>
-              <% end %>
-              <%= yield(:page_header) %>
-            </div>
-        </div>
-        <%= yield %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= flash[:notice] %>
       </div>
+    <% end %>
+    <%= yield %>
     </div>
   </body>
 </html>

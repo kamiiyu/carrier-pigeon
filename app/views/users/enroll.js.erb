@@ -1,9 +1,0 @@
-<% if @enrollment.persisted?  %>
-  var _lable = $("#enrollment_list_modal_label").text()
-  var _new_count = (parseInt(_lable.charAt(0)) + 1).toString()
-  $("#enrollment_list_modal_label").text(_lable.replace(/^\d+/, _new_count))
-  $(".list-inline").append("<li\><img class=\"img-circle\" title=\"<%= @enrollment.user.first_name %>\" src=\"<%= @enrollment.user.gravatar_url %>\" \"><strong class=\"primary-font\"><%= @enrollment.user.display_name %></strong></li>")
-  BootstrapDialog.alert({type: BootstrapDialog.TYPE_SUCCESS, message: 'You have enrolled successfully!'});
-<% else %>
-  BootstrapDialog.alert({type: BootstrapDialog.TYPE_DANGER, message: "<%= @enrollment.errors.values.sum([]).join('\n') %>"});
-<% end %>

@@ -13,7 +13,6 @@
  *= require bootstrap/css/bootstrap
  *= require bootstrap-select/bootstrap-select
  *= require bootstrap-datetimepicker
- *= require boostrap3-dialog/bootstrap-dialog.min
  *= require sb-admin-2/css/sb-admin-2
  *= require font-awesome/css/font-awesome
  *= require_tree .

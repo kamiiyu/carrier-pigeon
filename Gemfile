@@ -29,15 +29,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
-gem 'redis-namespace'
-gem 'redis-rails'
-gem 'redis-rack-cache'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'kaminari'
-
-gem 'jwt'
 
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
@@ -46,26 +41,19 @@ gem 'ckeditor'
 gem "non-stupid-digest-assets"
 gem 'paperclip'
 
-gem 'gravtastic'
-
 gem 'simple_form'
 
 gem 'devise'
-gem "pundit"
 
 gem 'simplecov', :require => false, :group => :test
 
 gem 'config'
 
-gem 'rack-mini-profiler', require: false
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   #gem 'byebug', platform: :mri
   gem 'rspec-rails'
-  gem 'rspec-its'
-  gem 'rails-controller-testing'
-  gem 'factory_girl_rails'
+  gem 'factory_girl'
   gem 'faker'
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
@@ -82,11 +70,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', '~> 0.45.0', require: false
-end
-
-group :test do
-  gem 'database_cleaner'
-  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -24,7 +24,6 @@ Ckeditor.setup do |config|
   # Setup authorization to be run as a before filter
   # By default: there is no authorization.
   # config.authorize_with :cancan
-  config.authorize_with :pundit
 
   # Override parent controller CKEditor inherits from
   # By default: 'ApplicationController'
@@ -56,6 +55,4 @@ Ckeditor.setup do |config|
   # Used when CKEditor CDN enabled
   # By default: "ckeditor/config.js"
   # config.js_config_url = 'ckeditor/config.js'
-
-  config.parameterize_filenames = false
 end
