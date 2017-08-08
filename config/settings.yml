@@ -1,0 +1,5 @@
+event:
+  types: ['Training', 'Outing', 'Others']
+  status: ['draft', 'published']
+
+domain: {development: 'http://localhost:3000', production: 'http://qa-intranet.tkcnsoft.com'}
